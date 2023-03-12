@@ -19,17 +19,26 @@
   <body>
     <div class="container mx-auto mt-6 max-w-sm">
       <h1 class="text-5xl mb-4">Apline.js Demo</h1>
-      <div x-data="{open: false}">
-        <button @click="open = !open" class="bg-slate-700 text-white px-4 py-2 rounded-xl">
-            Toggle
+      <div x-data="{open: false, name: 'abdallah'}">
+        <!-- @click/ x-on:click -->
+        <button
+          @click="open = !open"
+          class="bg-slate-700 text-white px-4 py-2 rounded-xl"
+        >
+          Toggle
         </button>
-        <div x-show="open" x-cloak>
+        <!-- x-show -->
+        <div x-show="open" x-cloak x-transition>
           <p class="bg-gray=200 p-4 my-6 rounded">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
             dolore accusamus, eum quam praesentium ullam architecto sed minima,
             quae sit tenetur iure eos, quasi aliquid dolorum a repellat nobis
             quod.
           </p>
+        </div>
+        <!-- x-text -->
+        <div class="my-4">
+          The value of name <span x-text="name" class="font-bold"></span>
         </div>
       </div>
     </div>
