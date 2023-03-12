@@ -25,10 +25,10 @@
         name: 'abdallah',
         search: '',
         posts: [
-            {title: 'Post One'},
-            {title: 'Post Two'},
-            {title: 'Post Three'},
-            {title: 'Post Four'}],
+            {title: 'Post 1'},
+            {title: 'Post 2'},
+            {title: 'Post 3'},
+            {title: 'Post 4'}],
         }"
       >
         <!-- @click/ x-on:click, x-bind -->
@@ -78,9 +78,23 @@
           <div x-text="post.title"></div>
         </template>
 
-        <button @click="posts.push({title: 'New Post'})" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg">
-            Add Post
+        <button
+          @click="const len = posts.length + 1; posts.push({title: `Post ${len}`})"
+          class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg"
+        >
+          Add Post
         </button>
+
+        <!-- x-ref -->
+        <div class="mt-5">
+          <div x-ref="text"></div>
+          <button
+            @click="$refs.text.innerText = 'Hi There!'"
+            class="bg-gray-600 text-white px-4 py-2 rounded-lg"
+          >
+            Click
+          </button>
+        </div>
       </div>
     </div>
   </body>
