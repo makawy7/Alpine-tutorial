@@ -132,25 +132,43 @@
         </button>
 
         <!-- dispatching to other components -->
-        <div>
+        <div class="mb-4 mt-6">
+          <h1 class="font-bold">dispatching to other components</h1>
           <input
-            class="border p-2 w-full mb-4 mt-6"
+            class="border p-2 w-full mt-1"
             placeholder="type something.."
             @input="$dispatch('set-title', $event.target.value)"
           />
         </div>
+
+        <!-- $data -->
+        <button
+          @click="getLatestPost($data.posts)"
+          class="bg-orange-600 text-white mt-6 p-2 rounded-lg"
+        >
+          Get Latest Post
+        </button>
       </div>
 
-      
       <!-- new component -->
       <div
         x-data="{title: 'Hi There!'}"
-        class="mt-6"
+        class="mt-6 mb-8"
         @set-title.window="title = $event.detail"
       >
         <h1 class="font-bold text-3xl">Different component</h1>
-        <div x-text="title" class="font-bold"></div>
+        <div x-text="title" class="mt-1 font-bold"></div>
       </div>
     </div>
+
+    <footer x-data class="text-center mt-16">
+      <p>Copyright &copy; <span x-text="(new Date).getFullYear()"></span></p>
+    </footer>
+
+    <script>
+      function getLatestPost(posts) {
+        console.log(posts.slice(-1)[0]);
+      }
+    </script>
   </body>
 </html>
