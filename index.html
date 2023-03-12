@@ -96,12 +96,60 @@
             Click
           </button>
         </div>
-        
+
         <!-- x-html -->
         <div
           class="mt-4"
           x-html="(await axios.get('./partial.html')).data"
         ></div>
+
+        <!-- $el -->
+        <button @click="$el.innerText='Hi There!'" class="mt-4 p-4 border">
+          Repalce Me
+        </button>
+
+        <!-- $watch -->
+        <div x-init="$watch('posts', posts => console.log(posts))"></div>
+
+        <!-- $dispatch -->
+        <!-- the dispatcher must be a child element -->
+        <div @notify="alert($event.detail.message)">
+          <button
+            @click="$dispatch('notify', {message: 'You\'ve been notified'})"
+            class="bg-green-700 text-white p-2 mt-4"
+          >
+            Notify
+          </button>
+        </div>
+
+        <!-- the dispatcher doesn't have to be a child element -->
+        <div @notify.window="alert($event.detail.message)"></div>
+        <button
+          @click="$dispatch('notify', {message: 'You\'ve been notified'})"
+          class="bg-purple-700 text-white p-2 mt-4"
+        >
+          Notify
+        </button>
+
+        <!-- dispatching to other components -->
+        <div>
+          <input
+            class="border p-2 w-full mb-4 mt-6"
+            placeholder="type something.."
+            @input="$dispatch('set-title', $event.target.value)"
+          />
+        </div>
+      </div>
+
+      
+      <!-- new component -->
+      <div
+        x-data="{title: 'Hi There!'}"
+        class="mt-6"
+        @set-title.window="title = $event.detail"
+      >
+        <h1 class="font-bold text-3xl">Different component</h1>
+        <div x-text="title" class="font-bold"></div>
       </div>
     </div>
   </body>
