@@ -19,11 +19,12 @@
   <body>
     <div class="container mx-auto mt-6 max-w-sm">
       <h1 class="text-5xl mb-4">Apline.js Demo</h1>
-      <div x-data="{open: false, name: 'abdallah'}">
-        <!-- @click/ x-on:click -->
+      <div x-data="{open: false, name: 'abdallah', search: ''}">
+        <!-- @click/ x-on:click, x-bind -->
         <button
           @click="open = !open"
-          class="bg-slate-700 text-white px-4 py-2 rounded-xl"
+          :class="open ? 'bg-blue-600' : 'bg-slate-700'"
+          class="text-white px-4 py-2 rounded-xl"
         >
           Toggle
         </button>
@@ -40,6 +41,20 @@
         <div class="my-4">
           The value of name <span x-text="name" class="font-bold"></span>
         </div>
+        <!-- x-effect -->
+        <div x-effect="console.log(open)"></div>
+
+        <!-- x-model -->
+        <input
+          x-model="search"
+          type="text"
+          placeholder="search for something..."
+          class="border p-2 w-full mb-4 mt-6"
+        />
+        <p>
+          <span class="font-bold">Searching for: </span>
+          <span x-text="search"></span>
+        </p>
       </div>
     </div>
   </body>
